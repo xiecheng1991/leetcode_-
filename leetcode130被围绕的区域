@@ -1,0 +1,35 @@
+class Solution {
+public:
+    void solve(vector<vector<char>>& board) {
+      int row = board.size();
+      if ( row == 0 ) return;
+      int col = board[0].size();
+      if ( col == 0 ) return;
+      if ( board.size() < 3 ) {
+        return; 
+      }
+      if ( board[0].size() < 3 ) {
+        return;
+      }
+      //然后采用bfs方式便利元素,但是由于边界上的'o'不能处理，所以
+      for ( int i = 1; i < row - 1; ++i ) {
+        for ( int j = 1; j < col - 1; ++j ) {
+          if ( board[i][j] == 'O' ) {
+            cout << board[i+1][j-1] << " " << board[i-1][j] << " " << board[i][j-1] << " " << board[i][j+1] << endl;
+            if ( board[i+1][j] == 'X' && board[i-1][j] == 'X' && board[i][j-1] == 'X' && board[i][j+1] == 'X' ) {
+              //处理被包围的情况下
+              board[i][j] = 'X';
+            } else {
+              if ( ( board[i][j] == board[i+1][j] || board[i][j] == board[i][j+1] ) && board[i][j] == 'O' ) {
+                //处理相连的情况下
+                board[i][j] = 'X';                
+              }
+            }
+          }
+        }
+      }
+      return;
+    }
+};
+
+典型的bfs代码只是经过初步调试 还未提交过
