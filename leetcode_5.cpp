@@ -34,7 +34,7 @@ longestPalindrome( string s ) {
 	}
 	int longest = 1;
 	string palindstr = s.substr( 0, 1 );
-       for ( int i = 1; i < s.size(); ++i ) {
+       for ( int i = 0; i < s.size(); ++i ) {
           int left = i - 1; 
           int right = i + 1; //aba情况
           while( left >= 0 && right < s.size() && s[left] == s[right] ) {
